@@ -4,11 +4,13 @@
 #include "cuda.h"
 #include "math.h"
 
-ACTIVATION get_activation(char *s);
+ACTIVATION get_activation(char *s);//ACTIVATION是激活函数的枚举类型，包括relu、sigmoid等，具体详见/include/darnnet.h
 
-char *get_activation_string(ACTIVATION a);
-float activate(float x, ACTIVATION a);
-float gradient(float x, ACTIVATION a);
+char *get_activation_string(ACTIVATION a);  //该函数返回激活函数名的字符串形式，例如："relu"、"sigmoid"等
+//作者这样写，是为了激活函数的枚举类型和字符串类型的互相转换
+
+float activate(float x, ACTIVATION a);//返回激活函数运算之后的值，x是输入
+float gradient(float x, ACTIVATION a);//顾名思义，返回在点x处的梯度值
 void gradient_array(const float *x, const int n, const ACTIVATION a, float *delta);
 void activate_array(float *x, const int n, const ACTIVATION a);
 #ifdef GPU
