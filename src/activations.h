@@ -1,10 +1,10 @@
-#ifndef ACTIVATIONS_H
+#ifndef ACTIVATIONS_H  //不是很懂这是要干什么？？有什么好处吗？？
 #define ACTIVATIONS_H
 #include "darknet.h"
 #include "cuda.h"
 #include "math.h"
 
-ACTIVATION get_activation(char *s);//ACTIVATION是激活函数的枚举类型，包括relu、sigmoid等，具体详见/include/darnnet.h
+ACTIVATION get_activation(char *s);//ACTIVATION是激活函数的枚举类型，包括relu、sigmoid等，具体详见include/darnnet.h
 
 char *get_activation_string(ACTIVATION a);  //该函数返回激活函数名的字符串形式，例如："relu"、"sigmoid"等
 //作者这样写，是为了激活函数的枚举类型和字符串类型的互相转换
@@ -16,11 +16,15 @@ void gradient_array(const float *x, const int n, const ACTIVATION a, float *delt
 void activate_array(float *x, const int n, const ACTIVATION a);/*上述activate函数的数组形式，n是数组长度，x是待激活值，
 作者把激活值重新赋给了x 。这样写是为了节省空间，在前向传播时，计算完激活值之后，输入值没必要保存了*/
 
-#ifdef GPU//目前还不懂cuda，日后再回顾。
+//上述函数代码都在src/activations.c中
+
+#ifdef GPU//目前还不懂cuda，日后再回顾。还没搞清楚这部分代码在哪里？
 void activate_array_gpu(float *x, int n, ACTIVATION a);
 void gradient_array_gpu(float *x, int n, ACTIVATION a, float *delta);
 #endif
 
+
+//下面都是各种激活函数的具体实现过程
 static inline float stair_activate(float x)
 {
     int n = floor(x);
