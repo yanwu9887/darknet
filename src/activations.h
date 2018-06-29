@@ -16,7 +16,7 @@ void gradient_array(const float *x, const int n, const ACTIVATION a, float *delt
 void activate_array(float *x, const int n, const ACTIVATION a);/*上述activate函数的数组形式，n是数组长度，x是待激活值，
 作者把激活值重新赋给了x 。这样写是为了节省空间，在前向传播时，计算完激活值之后，输入值没必要保存了*/
 
-//上述函数代码都在src/activations.c中
+//上述函数代码都在src/activations.c中，代码非常简单，就不在activations.c中添加注释了
 
 #ifdef GPU//目前还不懂cuda，日后再回顾。还没搞清楚这部分代码在哪里？
 void activate_array_gpu(float *x, int n, ACTIVATION a);
