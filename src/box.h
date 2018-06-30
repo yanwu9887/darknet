@@ -8,7 +8,16 @@ typedef struct{
 
 float box_rmse(box a, box b);
 dbox diou(box a, box b);
-box decode_box(box b, box anchor);
+box decode_box(box b, box anchor); 
+
+/*box的定义在/include/darknet.h中，定义如下：
+
+typedef struct{
+    float x,y,w,h;
+} box;
+
+*/
+
 box encode_box(box b, box anchor);
 
 #endif
